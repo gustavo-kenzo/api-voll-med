@@ -1,8 +1,9 @@
 package med.voll.api_rest.controller;
 
 import jakarta.validation.Valid;
+import med.voll.api_rest.paciente.DadosAtualizacaoPaciente;
 import med.voll.api_rest.paciente.DadosCadastroPaciente;
-import med.voll.api_rest.paciente.DadosListagemPacientes;
+import med.voll.api_rest.paciente.DadosListagemPaciente;
 import med.voll.api_rest.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,8 +23,13 @@ public class PacienteController {
     }
 
     @GetMapping
-    public Page<DadosListagemPacientes> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable pageable){
+    public Page<DadosListagemPaciente> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable pageable){
         return service.listar(pageable);
+    }
+
+    @PutMapping
+    public String atualizar(@RequestBody @Valid DadosAtualizacaoPaciente dados){
+        return service.atualizar(dados);
     }
 
 

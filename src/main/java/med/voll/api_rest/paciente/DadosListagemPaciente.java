@@ -1,14 +1,12 @@
 package med.voll.api_rest.paciente;
 
-import med.voll.api_rest.medico.Medico;
-
-public record DadosListagemPacientes(
+public record DadosListagemPaciente(
         Long id,
         String nome,
         String email,
         String cpf
 ) {
-    public DadosListagemPacientes(Paciente paciente) {
+    public DadosListagemPaciente(Paciente paciente) {
         this(
                 paciente.getId(),
                 paciente.getNome(),
