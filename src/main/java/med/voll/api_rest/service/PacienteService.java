@@ -31,9 +31,17 @@ public class PacienteService {
 
     @Transactional
     public String atualizar(DadosAtualizacaoPaciente dados) {
-        if(!repository.existsById(dados.id()))
+        if (!repository.existsById(dados.id()))
             return "Paciente não existe";
         var paciente = repository.getReferenceById(dados.id());
         return paciente.atualizar(dados);
+    }
+
+    @Transactional
+    public String deletar(Long id) {
+        if (!repository.existsById(id))
+            return "Paciente não existe";
+        var paciente = repository.getReferenceById(id);
+        return paciente.excluir();
     }
 }

@@ -49,4 +49,12 @@ public class Paciente {
             this.endereco.atualizar(dados.endereco());
         return null;
     }
+
+    public String excluir() {
+        if (!this.ativo)
+            return "Paciente já está inativo";
+        else
+            this.ativo = false;
+        return "Paciente inativado";
+    }
 }

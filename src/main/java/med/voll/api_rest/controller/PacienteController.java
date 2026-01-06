@@ -32,5 +32,10 @@ public class PacienteController {
         return service.atualizar(dados);
     }
 
+    @DeleteMapping("/{id}")
+    public String deletar(@PathVariable Long id){
+        return service.deletar(id);
+    }
+
 
 }
