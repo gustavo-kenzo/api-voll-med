@@ -2,8 +2,11 @@ package med.voll.api_rest.service;
 
 import jakarta.validation.Valid;
 import med.voll.api_rest.medico.DadosCadastroMedico;
+import med.voll.api_rest.medico.DadosListagemMedico;
 import med.voll.api_rest.medico.Medico;
 import med.voll.api_rest.medico.MedicoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,4 +26,7 @@ public class MedicoService {
         return "Médico adicionado";
     }
 
+    public Page<DadosListagemMedico> listar(Pageable pageable) {
+        return repository.findAllByAtivoTrue(pageable).map(DadosListagemMedico::new);
+    }
 }
