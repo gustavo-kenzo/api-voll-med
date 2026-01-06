@@ -1,10 +1,8 @@
 package med.voll.api_rest.service;
 
-import med.voll.api_rest.medico.DadosAtualizacaoMedico;
-import med.voll.api_rest.medico.DadosCadastroMedico;
 import med.voll.api_rest.medico.DadosListagemMedico;
-import med.voll.api_rest.medico.Medico;
 import med.voll.api_rest.paciente.DadosCadastroPaciente;
+import med.voll.api_rest.paciente.DadosListagemPacientes;
 import med.voll.api_rest.paciente.Paciente;
 import med.voll.api_rest.paciente.PacienteRepository;
 import org.springframework.data.domain.Page;
@@ -20,6 +18,7 @@ public class PacienteService {
     public PacienteService(PacienteRepository repository) {
         this.repository = repository;
     }
+
     @Transactional
     public String cadastrar(DadosCadastroPaciente dados) {
         if (repository.existsByCpf(dados.cpf()))
@@ -27,5 +26,9 @@ public class PacienteService {
         else
             repository.save(new Paciente(dados));
         return "Paciente adicionado";
+    }
+
+    public Page<DadosListagemPacientes> listar(Pageable pageable) {
+        return repository.findAllByAtivoTrue(pageable).map(DadosListagemPacientes::new);
     }
 }
