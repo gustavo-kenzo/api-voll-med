@@ -46,18 +46,22 @@ public class Medico {
         this.ativo = true;
     }
 
-    public Medico(String nome, String telefone, Endereco endereco) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.endereco = endereco;
-    }
-
-    public void atualizar(@Valid DadosAtualizacaoMedico dados) {
+    public String atualizar(@Valid DadosAtualizacaoMedico dados) {
         if (dados.nome() != null)
             this.nome = dados.nome();
         if (dados.telefone() != null)
             this.telefone = dados.telefone();
         if (dados.endereco() != null)
             this.endereco.atualizar(dados.endereco());
+        return null;
+    }
+
+    public String excluir() {
+        if (!this.ativo)
+            return "Médico já está inativo";
+        else
+            this.ativo = false;
+        return "Médico inativado";
+
     }
 }

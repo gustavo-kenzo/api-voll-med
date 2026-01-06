@@ -33,4 +33,9 @@ public class MedicoController {
     public String atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados){
         return service.atualizar(dados);
     }
+
+    @DeleteMapping("/{id}")
+    public String deletar(@PathVariable Long id){
+        return service.deletar(id);
+    }
 }

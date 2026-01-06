@@ -33,7 +33,14 @@ public class MedicoService {
         if (!repository.existsById(dados.id()))
             return "Médico não existe. Procure outro ou cadastre";
         var medico = repository.getReferenceById(dados.id());
-        medico.atualizar(dados);
-        return null;
+        return medico.atualizar(dados);
+    }
+
+    @Transactional
+    public String deletar(Long id) {
+        if (!repository.existsById(id))
+            return "Médico não existe. Procure outro ou cadastre";
+        var medico = repository.getReferenceById(id);
+        return medico.excluir();
     }
 }
