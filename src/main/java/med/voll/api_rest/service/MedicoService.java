@@ -1,13 +1,10 @@
 package med.voll.api_rest.service;
 
-import jakarta.validation.Valid;
-import med.voll.api_rest.medico.DadosCadastroMedico;
-import med.voll.api_rest.medico.DadosListagemMedico;
-import med.voll.api_rest.medico.Medico;
-import med.voll.api_rest.medico.MedicoRepository;
+import med.voll.api_rest.medico.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MedicoService {
@@ -18,7 +15,8 @@ public class MedicoService {
         this.repository = repository;
     }
 
-    public String cadastrar(@Valid DadosCadastroMedico dados) {
+    @Transactional
+    public String cadastrar(DadosCadastroMedico dados) {
         if (repository.existsByCrm(dados.crm()))
             return "Médico já cadastrado";
         else
@@ -28,5 +26,14 @@ public class MedicoService {
 
     public Page<DadosListagemMedico> listar(Pageable pageable) {
         return repository.findAllByAtivoTrue(pageable).map(DadosListagemMedico::new);
+    }
+
+    @Transactional
+    public String atualizar(DadosAtualizacaoMedico dados) {
+        if (!repository.existsById(dados.id()))
+            return "Médico não existe. Procure outro ou cadastre";
+        var medico = repository.getReferenceById(dados.id());
+        medico.atualizar(dados);
+        return null;
     }
 }
