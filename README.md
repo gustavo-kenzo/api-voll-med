@@ -7,15 +7,24 @@ API REST para **gerenciamento de pacientes, médicos e agendamento de consultas*
 ## Tecnologias
 
 - Java 17  
-- Spring Boot (Web, Data JPA, Validation)  
+- Spring Boot (Web, Data JPA, Validation, Security)  
 - MySQL  
 - Lombok  
 - Maven  
+- JWT (JSON Web Token)  
+- Auth0  
 
 ---
 
 ## Funcionalidades
 
+### 🔐 Segurança e Autenticação
+- Controle de acesso com **Spring Security**  
+- Autenticação baseada em **JWT (stateless)**  
+- **Geração e validação de tokens** utilizando **Auth0**  
+- Endpoints protegidos por autenticação  
+- Endpoints públicos apenas para login/autenticação
+- 
 ### Pacientes
 - Cadastro com validações obrigatórias  
 - Email, CPF e telefone **únicos**  
@@ -111,44 +120,49 @@ API REST para **gerenciamento de pacientes, médicos e agendamento de consultas*
 ## 📂 Estrutura do Projeto
 
 ```text
-med.voll.api_rest
-├── consulta
-│   ├── Consulta
-│   ├── ConsultaRepository
-│   └── DadosCadastroConsulta
+api_rest
+├── .idea
+├── .mvn
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── med.voll.api_rest
+│   │   │       ├── controller
+│   │   │       │   ├── ConsultaController
+│   │   │       │   ├── MedicoController
+│   │   │       │   └── PacienteController
+│   │   │       │
+│   │   │       ├── domain
+│   │   │       │   ├── consulta
+│   │   │       │   ├── endereco
+│   │   │       │   ├── medico
+│   │   │       │   ├── paciente
+│   │   │       │   └── usuario
+│   │   │       │
+│   │   │       ├── infra
+│   │   │       │   ├── exception
+│   │   │       │   └── security
+│   │   │       │
+│   │   │       ├── service
+│   │   │       │   ├── ConsultaService
+│   │   │       │   ├── MedicoService
+│   │   │       │   └── PacienteService
+│   │   │       │
+│   │   │       └── ApiRestApplication
+│   │   │
+│   │   └── resources
+│   │       ├── db.migration
+│   │       ├── static
+│   │       ├── templates
+│   │       └── application.properties
+│   │
+│   └── test
 │
-├── controller
-│   ├── ConsultaController
-│   ├── MedicoController
-│   └── PacienteController
-│
-├── endereco
-│   ├── DadosEndereco
-│   └── Endereco
-│
-├── medico
-│   ├── DadosAtualizacaoMedico
-│   ├── DadosCadastroMedico
-│   ├── DadosListagemMedico
-│   ├── Especialidade
-│   ├── Medico
-│   └── MedicoRepository
-│
-├── paciente
-│   ├── DadosAtualizacaoPaciente
-│   ├── DadosCadastroPaciente
-│   ├── DadosListagemPaciente
-│   ├── Paciente
-│   └── PacienteRepository
-│
-├── service
-│   ├── ConsultaService
-│   ├── MedicoService
-│   └── PacienteService
-│
-├── ApiRestApplication
-
-resources
-├── db.migration
-└── application.properties
-
+├── target
+├── .gitattributes
+├── .gitignore
+├── HELP.md
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+└── README.md
