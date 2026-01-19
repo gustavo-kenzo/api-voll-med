@@ -1,4 +1,4 @@
-package med.voll.api_rest.medico;
+package med.voll.api_rest.domain.medico;
 
 public enum Especialidade {
     CARDIOLOGIA,

@@ -1,12 +1,12 @@
 package med.voll.api_rest.service;
 
-import med.voll.api_rest.consulta.Consulta;
-import med.voll.api_rest.consulta.ConsultaRepository;
-import med.voll.api_rest.consulta.DadosCadastroConsulta;
-import med.voll.api_rest.medico.Medico;
-import med.voll.api_rest.medico.MedicoRepository;
-import med.voll.api_rest.paciente.Paciente;
-import med.voll.api_rest.paciente.PacienteRepository;
+import med.voll.api_rest.domain.consulta.Consulta;
+import med.voll.api_rest.domain.consulta.ConsultaRepository;
+import med.voll.api_rest.domain.consulta.DadosCadastroConsulta;
+import med.voll.api_rest.domain.medico.Medico;
+import med.voll.api_rest.domain.medico.MedicoRepository;
+import med.voll.api_rest.domain.paciente.Paciente;
+import med.voll.api_rest.domain.paciente.PacienteRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

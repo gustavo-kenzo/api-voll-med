@@ -1,4 +1,4 @@
-package med.voll.api_rest.endereco;
+package med.voll.api_rest.domain.endereco;
 
 import jakarta.persistence.Embeddable;
 import jakarta.validation.Valid;

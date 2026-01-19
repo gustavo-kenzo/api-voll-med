@@ -1,12 +1,12 @@
-package med.voll.api_rest.consulta;
+package med.voll.api_rest.domain.consulta;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api_rest.medico.Medico;
-import med.voll.api_rest.paciente.Paciente;
+import med.voll.api_rest.domain.medico.Medico;
+import med.voll.api_rest.domain.paciente.Paciente;
 
 import java.time.LocalDateTime;
 

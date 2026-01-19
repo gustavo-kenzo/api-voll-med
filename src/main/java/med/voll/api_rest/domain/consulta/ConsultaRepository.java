@@ -1,4 +1,4 @@
-package med.voll.api_rest.consulta;
+package med.voll.api_rest.domain.consulta;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

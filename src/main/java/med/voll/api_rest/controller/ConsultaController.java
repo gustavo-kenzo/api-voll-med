@@ -1,7 +1,7 @@
 package med.voll.api_rest.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api_rest.consulta.DadosCadastroConsulta;
+import med.voll.api_rest.domain.consulta.DadosCadastroConsulta;
 import med.voll.api_rest.service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

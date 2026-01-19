@@ -1,6 +1,6 @@
 package med.voll.api_rest.service;
 
-import med.voll.api_rest.paciente.*;
+import med.voll.api_rest.domain.paciente.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

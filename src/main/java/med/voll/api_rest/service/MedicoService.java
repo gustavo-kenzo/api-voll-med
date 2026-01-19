@@ -2,7 +2,7 @@ package med.voll.api_rest.service;
 
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
-import med.voll.api_rest.medico.*;
+import med.voll.api_rest.domain.medico.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

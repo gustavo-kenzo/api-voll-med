@@ -1,8 +1,5 @@
-package med.voll.api_rest.paciente;
+package med.voll.api_rest.domain.paciente;
 
-import aj.org.objectweb.asm.commons.Remapper;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
