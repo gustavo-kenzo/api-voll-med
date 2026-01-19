@@ -1,5 +1,7 @@
 package med.voll.api_rest.service;
 
+import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import med.voll.api_rest.medico.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,35 +18,39 @@ public class MedicoService {
     }
 
     @Transactional
-    public String cadastrar(DadosCadastroMedico dados) {
+    public DadosDetalhamentoMedico cadastrar(DadosCadastroMedico dados) {
         if (repository.existsByCrm(dados.crm()))
-            return "Médico já cadastrado";
-        else
-            repository.save(new Medico(dados));
-        return "Médico adicionado";
+            throw new EntityExistsException("Médico já cadastrado");
+        else {
+            var medico = new Medico(dados);
+            repository.save(medico);
+            return new DadosDetalhamentoMedico(medico);
+        }
     }
 
     public Page<DadosListagemMedico> listar(Pageable pageable) {
         return repository.findAllByAtivoTrue(pageable).map(DadosListagemMedico::new);
     }
 
+    //CREATE
     @Transactional
-    public String atualizar(DadosAtualizacaoMedico dados) {
+    public DadosDetalhamentoMedico atualizar(DadosAtualizacaoMedico dados) {
         if (!repository.existsById(dados.id()))
-            return "Médico não existe. Procure outro ou cadastre";
-        var medico = repository.getReferenceById(dados.id());
-        return medico.atualizar(dados);
+            throw new EntityNotFoundException("Médico não existe. Procure outro ou cadastre");
+        var medicoAntigo = repository.getReferenceById(dados.id());
+        var medicoAtualizado = medicoAntigo.atualizar(dados);
+        return new DadosDetalhamentoMedico(medicoAtualizado);
     }
 
     @Transactional
-    public String deletar(Long id) {
+    public void deletar(Long id) {
         if (!repository.existsById(id))
-            return "Médico não existe. Procure outro ou cadastre";
+            throw new EntityNotFoundException("Médico não existe. Procure outro ou cadastre");
         var medico = repository.getReferenceById(id);
-        return medico.excluir();
+        medico.excluir();
     }
 
-    public DadosDetalhamentoMedico detalhar(Long id){
+    public DadosDetalhamentoMedico detalhar(Long id) {
         var medico = repository.getReferenceById(id);
         return new DadosDetalhamentoMedico(medico);
     }
