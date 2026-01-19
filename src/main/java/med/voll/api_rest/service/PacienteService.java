@@ -44,4 +44,9 @@ public class PacienteService {
         var paciente = repository.getReferenceById(id);
         return paciente.excluir();
     }
+
+    public DadosDetalhamentoPaciente detalhar(Long id) {
+        var paciente = repository.getReferenceById(id);
+        return new DadosDetalhamentoPaciente(paciente);
+    }
 }

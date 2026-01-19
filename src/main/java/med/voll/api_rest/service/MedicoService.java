@@ -43,4 +43,9 @@ public class MedicoService {
         var medico = repository.getReferenceById(id);
         return medico.excluir();
     }
+
+    public DadosDetalhamentoMedico detalhar(Long id){
+        var medico = repository.getReferenceById(id);
+        return new DadosDetalhamentoMedico(medico);
+    }
 }

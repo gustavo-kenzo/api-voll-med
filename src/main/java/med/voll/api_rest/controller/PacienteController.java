@@ -3,6 +3,7 @@ package med.voll.api_rest.controller;
 import jakarta.validation.Valid;
 import med.voll.api_rest.paciente.DadosAtualizacaoPaciente;
 import med.voll.api_rest.paciente.DadosCadastroPaciente;
+import med.voll.api_rest.paciente.DadosDetalhamentoPaciente;
 import med.voll.api_rest.paciente.DadosListagemPaciente;
 import med.voll.api_rest.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class PacienteController {
     @DeleteMapping("/{id}")
     public String deletar(@PathVariable Long id){
         return service.deletar(id);
+    }
+
+    @GetMapping("/{id}")
+    public DadosDetalhamentoPaciente detalhar(@PathVariable Long id){
+        return service.detalhar(id);
     }
 
 
